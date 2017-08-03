@@ -9,21 +9,22 @@
 import UIKit
 import MapKit
 
-class ViewController: UIViewController, CLLocationManagerDelegate{
-
+class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate{
+    
     @IBOutlet weak var mapview: MKMapView!
     
-    var dataaccess = DataAccess()
-    
     var manager = CLLocationManager()
+    var pokemonlist :[Pokemon] = []
+    var data = DataAccess()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        dataaccess.initializePokemon()
-        
+        mapview.delegate = self
         manager.delegate = self
         manager.requestWhenInUseAuthorization()
+        
+        pokemonlist = data.getPokemons()
         
         if CLLocationManager.authorizationStatus() == .authorizedWhenInUse{
             mapview.showsUserLocation = true
@@ -36,7 +37,9 @@ class ViewController: UIViewController, CLLocationManagerDelegate{
         }
         
         Timer.scheduledTimer(withTimeInterval: 5, repeats: true) { (Timer) in
-            let pokemon = MKPointAnnotation()
+            
+            let randomMon = arc4random_uniform(UInt32(self.pokemonlist.count))
+            let pokemon = PokemonAnnotation(coordinate: self.manager.location!.coordinate, pokemon: self.pokemonlist[Int(randomMon)])
             
             let rand1 = CLLocationDegrees(Double(arc4random_uniform(100))/10000)
             let rand2 = CLLocationDegrees(Double(arc4random_uniform(100))/10000)
@@ -60,8 +63,24 @@ class ViewController: UIViewController, CLLocationManagerDelegate{
         // Do any additional setup after loading the view, typically from a nib.
     }
     
+    func  mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
+        let annoView = MKAnnotationView(annotation: annotation, reuseIdentifier: nil)
+        
+        if annotation is MKUserLocation{
+            annoView.image = UIImage(named: "player")
+        }else{
+            
+            annoView.image = UIImage(named: (annotation as! PokemonAnnotation).pokemon.imagename!)
+            
+            annoView.frame.size.height = 30
+            annoView.frame.size.width = 30
+        }
+        
+        return annoView
+    }
+    
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-
+        
         // called evertime the location is updated
         manager.stopUpdatingLocation()
     }
