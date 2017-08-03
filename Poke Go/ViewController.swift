@@ -13,10 +13,14 @@ class ViewController: UIViewController, CLLocationManagerDelegate{
 
     @IBOutlet weak var mapview: MKMapView!
     
+    var dataaccess = DataAccess()
+    
     var manager = CLLocationManager()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        dataaccess.initializePokemon()
         
         manager.delegate = self
         manager.requestWhenInUseAuthorization()

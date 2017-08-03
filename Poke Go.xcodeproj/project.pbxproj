@@ -15,6 +15,7 @@
 		BD375EA71F30F50D0006DF0A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BD375EA51F30F50D0006DF0A /* LaunchScreen.storyboard */; };
 		BD375EB01F3138EE0006DF0A /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BD375EAF1F3138EE0006DF0A /* MapKit.framework */; };
 		BD375EB21F328C810006DF0A /* PokedexViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD375EB11F328C810006DF0A /* PokedexViewController.swift */; };
+		BD375EB41F329F4E0006DF0A /* DataAccess.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD375EB31F329F4E0006DF0A /* DataAccess.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +29,7 @@
 		BD375EA81F30F50D0006DF0A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BD375EAF1F3138EE0006DF0A /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		BD375EB11F328C810006DF0A /* PokedexViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PokedexViewController.swift; sourceTree = "<group>"; };
+		BD375EB31F329F4E0006DF0A /* DataAccess.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataAccess.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -65,6 +67,7 @@
 				BD375E991F30F50D0006DF0A /* AppDelegate.swift */,
 				BD375E9B1F30F50D0006DF0A /* ViewController.swift */,
 				BD375EB11F328C810006DF0A /* PokedexViewController.swift */,
+				BD375EB31F329F4E0006DF0A /* DataAccess.swift */,
 				BD375E9D1F30F50D0006DF0A /* Main.storyboard */,
 				BD375EA31F30F50D0006DF0A /* Assets.xcassets */,
 				BD375EA51F30F50D0006DF0A /* LaunchScreen.storyboard */,
@@ -157,6 +160,7 @@
 			files = (
 				BD375E9C1F30F50D0006DF0A /* ViewController.swift in Sources */,
 				BD375EB21F328C810006DF0A /* PokedexViewController.swift in Sources */,
+				BD375EB41F329F4E0006DF0A /* DataAccess.swift in Sources */,
 				BD375E9A1F30F50D0006DF0A /* AppDelegate.swift in Sources */,
 				BD375EA21F30F50D0006DF0A /* Poke_Go.xcdatamodeld in Sources */,
 			);
