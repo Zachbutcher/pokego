@@ -97,10 +97,30 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
             let region = MKCoordinateRegionMakeWithDistance(view.annotation!.coordinate, 200, 200)
             mapview.setRegion(region, animated: true)
             
-            Timer.scheduledTimer(withTimeInterval: 10, repeats: false, block: { (Timer) in
+            Timer.scheduledTimer(withTimeInterval: 1, repeats: false, block: { (Timer) in
                 if MKMapRectContainsPoint(self.mapview.visibleMapRect, MKMapPointForCoordinate(self.manager.location!.coordinate)){
                     (view.annotation as! PokemonAnnotation).pokemon.caught = true
+                    
+                    let AV = UIAlertController(title: "Pokemon Caught", message: "Congrats you just caught \((view.annotation as! PokemonAnnotation).pokemon.name!)", preferredStyle: .alert)
+                    let action1 = UIAlertAction(title: "OK", style: .default, handler: { (UIAlertAction) in
+                    })
+                    let action2 = UIAlertAction(title: "Go to Dex", style: .default, handler: { (action) in
+                        self.performSegue(withIdentifier: "pokedexSegue", sender: nil)
+                    })
+                    self.mapview.removeAnnotation(view.annotation!)
                     self.data.save()
+                    AV.addAction(action1)
+                    AV.addAction(action2)
+                    self.present(AV, animated: true, completion: nil)
+                }else{
+                    let AV = UIAlertController(title: "Tarnations!", message: "Pokemon is to far away! Move closer to catch \((view.annotation as! PokemonAnnotation).pokemon.name!)", preferredStyle: .alert)
+                    let action1 = UIAlertAction(title: "OK", style: .default, handler: { (UIAlertAction) in
+
+                    })
+                    
+                    AV.addAction(action1)
+                    self.present(AV, animated: true, completion: nil)
+                    
                 }
             })
             

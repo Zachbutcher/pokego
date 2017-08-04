@@ -44,7 +44,7 @@
                                 </constraints>
                                 <state key="normal" title="Button" image="pokeball"/>
                                 <connections>
-                                    <segue destination="Oqi-Gk-1V9" kind="presentation" animates="NO" id="Izn-Ol-I2i"/>
+                                    <segue destination="Oqi-Gk-1V9" kind="presentation" identifier="pokedexSegue" animates="NO" id="Izn-Ol-I2i"/>
                                 </connections>
                             </button>
                         </subviews>
