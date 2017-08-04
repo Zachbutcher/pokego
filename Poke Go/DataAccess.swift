@@ -107,6 +107,9 @@ class DataAccess {
         context.delete(name)
         
         (UIApplication.shared.delegate as! AppDelegate).saveContext()
-        
+    }
+    
+    func save(){
+        (UIApplication.shared.delegate as! AppDelegate).saveContext()
     }
 }

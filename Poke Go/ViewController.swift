@@ -68,6 +68,8 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
         
         if annotation is MKUserLocation{
             annoView.image = UIImage(named: "player")
+            annoView.frame.size.height = 30
+            annoView.frame.size.width = 30
         }else{
             
             annoView.image = UIImage(named: (annotation as! PokemonAnnotation).pokemon.imagename!)
@@ -83,6 +85,26 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
         
         // called evertime the location is updated
         manager.stopUpdatingLocation()
+    }
+    
+    func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
+        mapview.deselectAnnotation(view.annotation!, animated: false)
+        
+        if view.annotation! is MKUserLocation
+        {
+            return
+        }else{
+            let region = MKCoordinateRegionMakeWithDistance(view.annotation!.coordinate, 200, 200)
+            mapview.setRegion(region, animated: true)
+            
+            Timer.scheduledTimer(withTimeInterval: 10, repeats: false, block: { (Timer) in
+                if MKMapRectContainsPoint(self.mapview.visibleMapRect, MKMapPointForCoordinate(self.manager.location!.coordinate)){
+                    (view.annotation as! PokemonAnnotation).pokemon.caught = true
+                    self.data.save()
+                }
+            })
+            
+        }
     }
     
     @IBAction func centerLocationTapped(_ sender: Any) {
